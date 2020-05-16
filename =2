@@ -1,0 +1,11 @@
++ acorn@6.4.1
++ eslint@6.8.0
++ webpack@4.43.0
++ webpack@4.43.0
+removed 133 packages, updated 4 packages and audited 45843 packages in 12.018s
+
+154 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+

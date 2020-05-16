@@ -1,0 +1,127 @@
+.pokedex-entry
+	width: 100%
+	height: 100%
+	overflow: scroll
+	position: absolute
+	transform-style: preserve-3d
+
+
+	&__container
+		@include row
+		height: 100%
+		transform-style: preserve-3d
+	
+
+	&__meta-data
+		@include col(12)
+		animation: .8s cubic-bezier(0.22, 1, 0.36, 1) fadein
+		animation-fill-mode: forwards
+		align-items: center
+		display: flex
+		flex-flow: column nowrap
+		font-size: 1rem
+		hyphens: auto
+		justify-content: center
+		opacity: 0
+		word-break: break-word
+		text-align: center
+
+		@include fit-to(tablet)
+			font-size: 2.5rem
+
+		&--hidden
+			display: none
+		
+		&__name-en
+			text-transform: uppercase
+			-webkit-text-stroke-width: 2px
+
+		&__name-jp
+			margin-bottom: 1rem
+
+	&__controls
+		background-color: rgba(cyan, 0.2)
+
+
+	&__prev-next-links
+		visibility: visible
+
+		&--hidden
+			visibility: hidden
+
+
+	&__arrow-button
+		color: inherit
+		display: flex
+		flex-flow: column nowrap
+		justify-content: center
+		position: absolute
+		margin: 0
+		padding: 1rem
+		width: 25%
+
+		@include fit-to(tablet)
+			width: 8%
+
+
+	&__arrow-button--prev
+		left: 50%
+		top: 20%
+		transform: translateX(-50%) translateY(-50%)
+
+		@include fit-to(tablet)
+			left: 1rem
+			top: 50%
+			transform: translateX(0) translateY(-50%)
+
+
+	&__arrow-button--next
+		right: 50%
+		top: 80%
+		transform: translateX(50%) translateY(-50%)
+
+		@include fit-to(tablet)
+			right: 1rem
+			top: 50%
+			transform: translateX(0) translateY(-50%)
+
+
+	&__arrow-button--disabled
+		opacity: 50%
+		text-decoration: line-through
+	
+	
+	&__frame
+		display: flex
+		position: absolute
+		width: 100%
+
+	&__frame--top
+		top: 1rem
+	
+	&__frame--bottom
+		bottom: 2rem
+
+	.frame-text
+		color: inherit
+		display: block
+		margin: 0
+		outline: none
+		position: absolute
+		text-decoration: none
+
+		&:first-child
+			left: 1rem
+
+		&:last-child
+			right: 1rem
+
+
+@keyframes fadein
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+
+	

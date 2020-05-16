@@ -1,0 +1,77 @@
+.pokemon-details
+	animation: .8s cubic-bezier(0.22, 1, 0.36, 1) fadeup
+	animation-fill-mode: forwards	
+	align-items: flex-start
+	border: 1px solid
+	display: none
+	flex-flow: column nowrap
+	margin-left: 5%
+	position: absolute
+	top: 50%
+	transform: translateX(25%) translateY(-50%)
+	width: 90%
+
+	@include fit-to(tablet)
+		@include col(6)
+		@include col-offset(6)
+
+	@include fit-to(desktop)
+		@include col(5)
+		@include col-offset(6)
+
+
+	&--visible
+		display: flex
+
+	
+	&__row
+		@include bodyFontFamily
+		color: inherit
+		display: flex
+		font-size: 1rem
+		justify-content: center
+		margin: 0
+		padding: 1rem 1rem 0.75rem
+		text-align: center
+		width: calc(100% - 2rem)
+
+		&:not(:last-child)
+			border-bottom: 1px solid
+	
+	.types
+		display: flex
+		font-size: 1.125rem
+		justify-content: center
+
+		.type
+			line-height: 100%
+			margin-bottom: 0.25rem
+			padding: 0.5rem 0.25rem 0.125rem
+
+			&:not(:last-child)
+				margin-right: 1.5rem
+
+
+.toggle-details-button
+	@include headerFontFamily
+	background-color: transparent
+	border: 2px solid !important
+	color: inherit
+	cursor: pointer
+	font-size: 0.75rem
+	line-height: 100%
+	margin-bottom: 0.25rem
+	outline: none
+	padding: 0.75rem 0.75rem 0.5rem
+	text-transform: uppercase
+
+@keyframes fadeup
+  from
+    opacity: 0
+    transform: translateX(25%) translateY(-50%)
+  to
+    opacity: 1
+    transform: translateX(0) translateY(-50%)
+
+
+
