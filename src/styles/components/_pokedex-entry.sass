@@ -19,15 +19,19 @@
 		align-items: center
 		display: flex
 		flex-flow: column nowrap
-		font-size: 1rem
+		font-size: 1.25rem
 		hyphens: auto
 		justify-content: center
 		opacity: 0
-		word-break: break-word
+		position: absolute
 		text-align: center
+		top: 40%
+		transform: translateY(-50%)
+		word-break: break-word
 
 		@include fit-to(tablet)
 			font-size: 2.5rem
+			top: 50%
 
 		&--hidden
 			display: none
@@ -65,25 +69,23 @@
 
 
 	&__arrow-button--prev
-		left: 50%
-		top: 20%
-		transform: translateX(-50%) translateY(-50%)
+		left: 1rem
+		top: 80%
+		transform: translateY(-50%)
 
 		@include fit-to(tablet)
-			left: 1rem
 			top: 50%
-			transform: translateX(0) translateY(-50%)
+			transform: translateY(-50%)
 
 
 	&__arrow-button--next
-		right: 50%
+		right: 1rem
 		top: 80%
-		transform: translateX(50%) translateY(-50%)
+		transform: translateY(-50%)
 
 		@include fit-to(tablet)
-			right: 1rem
 			top: 50%
-			transform: translateX(0) translateY(-50%)
+			transform: translateY(-50%)
 
 
 	&__arrow-button--disabled
@@ -95,6 +97,9 @@
 		display: flex
 		position: absolute
 		width: 100%
+
+		&--inactive
+			visibility: hidden
 
 	&__frame--top
 		top: 1rem

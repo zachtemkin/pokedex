@@ -2,9 +2,9 @@
 number: "092"
 id: 92
 types: 
-  - {color: "#E7F3DC"}
+  - {color: "#FF605A"}
   - {color: "#313759"}
-colors: { backgroundColor: "#FC6D58", textColor: "#E7F3DC" }
+colors: { backgroundColor: "#93426C", textColor: "#FF605A" }
 illustrationLayers:
   - 1.png
   - 0.png

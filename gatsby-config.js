@@ -10,6 +10,7 @@ module.exports = {
       },
     ],
   },
+  pathPrefix: "/pokedex",
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,

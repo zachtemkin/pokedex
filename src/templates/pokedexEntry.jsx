@@ -96,7 +96,7 @@ const PokemonDetail = ({ data, pageContext }) => {
 
   const Frame = ({ position }) => (
     <div
-      className={`pokedex-entry__frame pokedex-entry__frame--${position}`}
+      className={`pokedex-entry__frame pokedex-entry__frame--${position} ${detailIsVisible && ' pokedex-entry__frame--inactive'}`}
       style={{ color: frontmatter.colors.textColor }}
     >
       <Link to="/" className="frame-text">
