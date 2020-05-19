@@ -1,8 +1,8 @@
 .illustration
-    opacity: 30%
+    // opacity: 100%
     position: fixed
     top: 40%
-    transition: opacity .8s cubic-bezier(0.22, 1, 0.36, 1), margin .8s cubic-bezier(0.22, 1, 0.36, 1), width .8s cubic-bezier(0.22, 1, 0.36, 1)
+    transition: margin .8s cubic-bezier(0.22, 1, 0.36, 1), width .8s cubic-bezier(0.22, 1, 0.36, 1)
     transform: translateY(-50%)
     width: 100%
 
@@ -17,13 +17,12 @@
 
 
 .illustration--inactive
-    opacity: 40%
+    // opacity: 40%
     
     @include fit-to(tablet)
-        opacity: 100%
         @include col(6)
         @include col-offset(0)
-        opacity: 100%
+        // opacity: 100%
 
     @include fit-to(desktop)
         @include col(5)
