@@ -56,17 +56,9 @@ const PokemonDetail = ({ data, pageContext }) => {
     detailIsVisible ? setDetailIsVisible(false) : setDetailIsVisible(true)
 
   const w = typeof window !== 'undefined' ? window.innerWidth : 1
-  // const w = 1
-  // if (typeof window !== undefined) {
-  //   w = window.innerWidth
-  // }
-
+  
   const h = typeof window !== 'undefined' ? window.innerHeight : 1
-  // const h = 1
-  // if (typeof window !== undefined) {
-  //   h = window.innerHeight
-  // }
-
+  
   const transformIllustration = e => {
     const illustrationOffsetX = 0.5 - e.clientX / (0.5 * w)
     const illustrationOffsetY = 0.5 - e.clientY / (0.5 * h)

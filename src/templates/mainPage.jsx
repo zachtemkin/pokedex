@@ -8,7 +8,7 @@ const MainPage = ({ children, className, pageTitle, backgroundColor }) => {
 
   return (
     <React.Fragment>
-      <SEO title={title} />
+      <SEO title={title} backgroundColor={backgroundColor}/>
       <div
         className={"page " + className}
         style={{ backgroundColor: backgroundColor }}

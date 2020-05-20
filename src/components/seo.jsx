@@ -3,7 +3,7 @@ import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 import PropTypes from "prop-types"
 
-function SEO({ description, lang, meta, title, bodyScrollDisabled }) {
+function SEO({ description, lang, meta, title, backgroundColor}) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -25,7 +25,7 @@ function SEO({ description, lang, meta, title, bodyScrollDisabled }) {
       htmlAttributes={{
         lang,
       }}
-      bodyAttributes={bodyScrollDisabled ? { class: "no-scroll" } : {}}
+      bodyAttributes={typeof window !== 'undefined' ? { style:'background-color: ' + backgroundColor } : {}}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
@@ -61,6 +61,10 @@ function SEO({ description, lang, meta, title, bodyScrollDisabled }) {
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          name: `apple-mobile-web-app-status-bar-style`,
+          content: `black-translucent`
+        },
       ].concat(meta)}
     />
   )
@@ -78,6 +82,7 @@ SEO.propTypes = {
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
   bodyScrollDisabled: PropTypes.bool,
+  backgroundColor: PropTypes.string,
 }
 
 export default SEO
