@@ -12,7 +12,6 @@ const Index = ({ data }) => {
         <h1 className="pokemon-list__title">National Pokedex</h1>
         <ol className="pokemon-list__list">
           {entries.map(({ node }, index) => {
-            console.log(node.frontmatter.id)
             const pokemonNode =
               data.allPokedexEntry.nodes[node.frontmatter.id - 1]
             const pokemonNames =
