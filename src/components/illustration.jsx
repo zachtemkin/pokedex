@@ -25,6 +25,7 @@ const Illustration = ({ illustration, illustrationOffset, isInactive }) => {
                           scale(${0.25 * index + 1})`,
             }}
             fluid={layer.childImageSharp.fluid}
+            loading={'eager'}
             key={index}
           />
         ))}
