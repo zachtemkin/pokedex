@@ -19,19 +19,20 @@
 		align-items: center
 		display: flex
 		flex-flow: column nowrap
-		font-size: 1.25rem
+		font-size: 1em
 		hyphens: auto
-		justify-content: center
+		justify-content: flex-start
 		opacity: 0
 		position: absolute
 		text-align: center
-		top: 40%
-		transform: translateY(-50%)
+		top: 5rem
 		word-break: break-word
 
 		@include fit-to(tablet)
 			font-size: 2.5rem
+			justify-content: center
 			top: 50%
+			transform: translateY(-50%)
 
 		&--hidden
 			display: none
@@ -42,9 +43,6 @@
 
 		&__name-jp
 			margin-bottom: 1rem
-
-	&__controls
-		background-color: rgba(cyan, 0.2)
 
 
 	&__prev-next-links
@@ -61,32 +59,21 @@
 		justify-content: center
 		position: absolute
 		margin: 0
-		padding: 1rem
+		padding: 0 1rem
+		top: calc(100% - 6rem)
+		transform: translateY(-100%)
 		width: 25%
 
 		@include fit-to(tablet)
+			top: 50%
+			transform: translateY(-50%)
 			width: 8%
-
 
 	&__arrow-button--prev
 		left: 1rem
-		top: 80%
-		transform: translateY(-50%)
-
-		@include fit-to(tablet)
-			top: 50%
-			transform: translateY(-50%)
-
 
 	&__arrow-button--next
 		right: 1rem
-		top: 80%
-		transform: translateY(-50%)
-
-		@include fit-to(tablet)
-			top: 50%
-			transform: translateY(-50%)
-
 
 	&__arrow-button--disabled
 		opacity: 50%
@@ -95,17 +82,21 @@
 	
 	&__frame
 		display: flex
+		font-size: 0.75rem
 		position: absolute
 		width: 100%
+
+		@include fit-to(tablet)
+			font-size: 1rem
 
 		&--inactive
 			visibility: hidden
 
 	&__frame--top
-		top: 1rem
+		top: 2rem
 	
 	&__frame--bottom
-		bottom: 2rem
+		bottom: 3rem
 
 	.frame-text
 		color: inherit
@@ -113,7 +104,7 @@
 		margin: 0
 		outline: none
 		position: absolute
-		text-decoration: none
+		text-decoration: underline
 
 		&:first-child
 			left: 1rem

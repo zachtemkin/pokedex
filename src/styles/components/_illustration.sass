@@ -1,47 +1,47 @@
 .illustration
-    // opacity: 100%
-    position: fixed
-    top: 40%
-    transition: margin .8s cubic-bezier(0.22, 1, 0.36, 1), width .8s cubic-bezier(0.22, 1, 0.36, 1)
-    transform: translateY(-50%)
-    width: 100%
+	opacity: 1
+	position: fixed
+	top: calc(50% + 3rem)
+	transition: margin .8s cubic-bezier(0.22, 1, 0.36, 1), width .8s cubic-bezier(0.22, 1, 0.36, 1)
+	width: 100%
 
-    @include fit-to(tablet)
-        @include col(8)
-        @include col-offset(2)
-        top: 50%
+	@include fit-to(tablet)
+		@include col(8)
+		@include col-offset(2)
+		top: 50%
+		transform: translateY(-50%)
 
-    @include fit-to(desktop)
-        @include col(6)
-        @include col-offset(3)
+	@include fit-to(desktop)
+		@include col(6)
+		@include col-offset(3)
 
 
 .illustration--inactive
-    // opacity: 40%
-    
-    @include fit-to(tablet)
-        @include col(6)
-        @include col-offset(0)
-        // opacity: 100%
+	opacity: .3
 
-    @include fit-to(desktop)
-        @include col(5)
-        @include col-offset(1)
-        
+	@include fit-to(tablet)
+		@include col(6)
+		@include col-offset(0)
+		opacity: 1
+
+	@include fit-to(desktop)
+		@include col(5)
+		@include col-offset(1)
+		
 
 .illustration-wrapper
-    align-items: center
-    display: flex
-    justify-content: center
-    height: 100%
-    perspective: 500px
-    pointer-events: none
-    transform-style: preserve-3d
-    width: 100%
+	align-items: center
+	display: flex
+	justify-content: center
+	height: 100%
+	perspective: 500px
+	pointer-events: none
+	transform-style: preserve-3d
+	width: 100%
 
 
-    &__layer
-        overflow: visible
-        position: absolute !important
-        transform-style: preserve-3d
-        width: 125%
+	&__layer
+		overflow: visible
+		position: absolute !important
+		transform-style: preserve-3d
+		width: 125%

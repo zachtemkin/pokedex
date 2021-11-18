@@ -1,9 +1,11 @@
 .pokemon-list
 	margin-top: 4rem
 
+	
 	&__wrapper
 		@include row
 
+	
 	&__title
 		@include col(12)
 		margin-bottom: 1rem
@@ -12,20 +14,38 @@
 			@include col(4)
 			@include col-offset(1)
 
+	
 	&__list
 		@include col(12)
 
 		@include fit-to(tablet)
-			@include col(4)
+			@include col(7)
 
-	.pokemon > a
-		background-color: #fff
-		color: #000
+	
+	.pokemon
 		padding: 0.5rem
-		margin-bottom: 0
-		text-decoration: none
+		position: relative
+		
+		&__link
+			color: #000
+			margin-bottom: 0
+			text-decoration: none
 
-		&:hover
-			background-color: inherit
-			color: inherit
-			text-decoration: underline
+			&:hover
+				text-decoration: underline
+
+		
+		&--is-captured:after
+			background-color: red
+			border-radius: .5rem
+			content: ''
+			height: .5rem
+			left: 0
+			position: absolute
+			top: 50%
+			transform: translateY(-50%) translateX(-1rem)
+			width: .5rem
+
+			
+			
+	

@@ -1,19 +1,24 @@
 .pokemon-details
 	animation: .8s cubic-bezier(0.22, 1, 0.36, 1) fadeup
-	animation-fill-mode: forwards	
+	animation-fill-mode: forwards
 	align-items: flex-start
 	border: 1px solid
 	display: none
 	flex-flow: column nowrap
 	margin-left: 5%
+	margin-top: 2rem
 	position: absolute
-	top: 50%
-	transform: translateX(25%) translateY(-50%)
+	transform: translateX(25%)
 	width: 90%
 
 	@include fit-to(tablet)
 		@include col(6)
 		@include col-offset(6)
+		animation: .8s cubic-bezier(0.22, 1, 0.36, 1) fadeup--tablet
+		animation-fill-mode: forwards
+		margin-top: 0
+		top: 50%
+		transform: translateX(25%) translateY(-50%)
 
 	@include fit-to(desktop)
 		@include col(5)
@@ -37,6 +42,21 @@
 
 		&:not(:last-child)
 			border-bottom: 1px solid
+
+		> b
+			@include headerFontFamily
+
+	
+	&__row--list
+		flex-flow: column nowrap
+
+	
+	&__row--list-item
+		border: none !important
+		margin-bottom: .5rem
+		padding: 0
+		width: 100%
+
 	
 	.types
 		display: flex
@@ -50,6 +70,10 @@
 
 			&:not(:last-child)
 				margin-right: 1.5rem
+
+
+	&__row-header
+		width: 100%
 
 
 .toggle-details-button
@@ -68,12 +92,22 @@
 
 
 @keyframes fadeup
-  from
-    opacity: 0
-    transform: translateX(25%) translateY(-50%)
-  to
-    opacity: 1
-    transform: translateX(0) translateY(-50%)
+	from
+		opacity: 0
+		transform: translateX(25%) 
+	to
+		opacity: 1
+		transform: translateX(0)
+	
+@keyframes fadeup--tablet
+	from
+		opacity: 0
+		transform: translateX(25%) translateY(-50%)
+	to
+		opacity: 1
+		transform: translateX(0) translateY(-50%)
+
+
 
 
 

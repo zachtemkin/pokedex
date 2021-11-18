@@ -1,7 +1,6 @@
 const path = require(`path`)
 const {
   createFilePath,
-  createParentChildLink,
 } = require(`gatsby-source-filesystem`)
 const fetch = require(`node-fetch`)
 

@@ -32,7 +32,10 @@ const PokemonDetails = props => {
           onClick={onToggleClick}
         />
       </div>
-      <p className="pokemon-details__row name">{`${number}: ${names.en} / ${names.jp}`}</p>
+      <p className="pokemon-details__row name">
+        <b>{`${number}:\xa0`}</b>
+        {`${names.en} / ${names.jp}`}
+      </p>
       <div className="pokemon-details__row types">
         {types.map((type, index) => (
           <p
@@ -50,21 +53,40 @@ const PokemonDetails = props => {
       <p className="pokemon-details__row" style={{ color: color }}>
         {description}
       </p>
-      <p className="pokemon-details__row">{`Height: ${height / 10} m`}</p>
-      <p className="pokemon-details__row">{`Weight: ${weight / 10} kg`}</p>
+      <p className="pokemon-details__row">
+        <b>Height:</b> {`\xa0${height / 10} m`}
+      </p>
+      <p className="pokemon-details__row">
+        <b>Weight:</b> {`\xa0${weight / 10} kg`}
+      </p>
 
-      {abilities.map((node, index) => (
-        <p
-          className="pokemon-details__row"
-          key={index}
-        >{`Ability: ${node.ability.name}`}</p>
-      ))}
-
-      {evolvesFrom !== null && (
-        <p className="pokemon-details__row">{`Evolves From: ${evolvesFrom.name}`}</p>
+      {abilities && (
+        <div className="pokemon-details__row pokemon-details__row--list">
+          <p className="pokemon-details__row-header">Abilities:</p>
+          <ul>
+            {abilities.map((node, index) => (
+              <li
+                className="pokemon-details__row pokemon-details__row--list-item"
+                key={index}
+              >
+                &mdash; {node.ability.name} &mdash;
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
 
-      <p className="pokemon-details__row">{`Habitat: ${habitat}`}</p>
+      {evolvesFrom !== null && (
+        <p className="pokemon-details__row">
+          <b>{`Evolves From:\xa0`}</b>
+          {`${evolvesFrom.name}`}
+        </p>
+      )}
+
+      <p className="pokemon-details__row">
+        <b>{`Habitat:\xa0`}</b>
+        {`${habitat}`}
+      </p>
     </div>
   )
 }

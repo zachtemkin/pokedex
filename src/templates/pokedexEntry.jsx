@@ -49,26 +49,26 @@ const PokemonDetail = ({ data, pageContext }) => {
   ////////////////////////////////////////////////////////////////////////////////
 
   const [detailIsVisible, setDetailIsVisible] = useState(false)
-
   const [illustrationOffset, setIllustrationOffset] = useState({ x: 0, y: 0 })
 
   const toggleClick = () =>
     detailIsVisible ? setDetailIsVisible(false) : setDetailIsVisible(true)
 
-  const w = typeof window !== 'undefined' ? window.innerWidth : 1
-  
-  const h = typeof window !== 'undefined' ? window.innerHeight : 1
-  
+  const w = typeof window !== "undefined" ? window.innerWidth : 1
+  const h = typeof window !== "undefined" ? window.innerHeight : 1
+
   const transformIllustration = e => {
     const illustrationOffsetX = 0.5 - e.clientX / (0.5 * w)
     const illustrationOffsetY = 0.5 - e.clientY / (0.5 * h)
-
     setIllustrationOffset({ x: illustrationOffsetX, y: illustrationOffsetY })
   }
 
   const PrevNextControls = () => (
     <div
-      className={"pokedex-entry__prev-next-links " + (detailIsVisible ? "pokedex-entry__prev-next-links--hidden" : "")}
+      className={
+        "pokedex-entry__prev-next-links " +
+        (detailIsVisible ? "pokedex-entry__prev-next-links--hidden" : "")
+      }
       style={{ color: frontmatter.colors.textColor }}
     >
       {prevPost ? (
@@ -76,7 +76,7 @@ const PokemonDetail = ({ data, pageContext }) => {
           to={prevPost}
           className="pokedex-entry__arrow-button pokedex-entry__arrow-button--prev"
         >
-          <Arrow direction="left" color={frontmatter.colors.textColor}/>
+          <Arrow direction="left" color={frontmatter.colors.textColor} />
         </Link>
       ) : (
         <p className="pokedex-entry__arrow-button pokedex-entry__arrow-button--prev pokedex-entry__arrow-button--disabled"></p>
@@ -87,7 +87,7 @@ const PokemonDetail = ({ data, pageContext }) => {
           to={nextPost}
           className="pokedex-entry__arrow-button pokedex-entry__arrow-button--next"
         >
-          <Arrow direction="right" color={frontmatter.colors.textColor}/>
+          <Arrow direction="right" color={frontmatter.colors.textColor} />
         </Link>
       ) : (
         <p className="pokedex-entry__arrow-button pokedex-entry__arrow-button--next pokedex-entry__arrow-button--disabled"></p>
@@ -97,7 +97,8 @@ const PokemonDetail = ({ data, pageContext }) => {
 
   const Frame = ({ position }) => (
     <div
-      className={`pokedex-entry__frame pokedex-entry__frame--${position} ${detailIsVisible && ' pokedex-entry__frame--inactive'}`}
+      className={`pokedex-entry__frame pokedex-entry__frame--${position} ${detailIsVisible &&
+        " pokedex-entry__frame--inactive"}`}
       style={{ color: frontmatter.colors.textColor }}
     >
       <Link to="/" className="frame-text">
@@ -122,7 +123,11 @@ const PokemonDetail = ({ data, pageContext }) => {
       <div
         className="pokedex-entry__container"
         style={{ color: frontmatter.colors.textColor }}
-        onMouseMove={e => transformIllustration(e)}
+        onMouseMove={
+          typeof window !== "undefined" && window.innerWidth >= 720
+            ? e => transformIllustration(e)
+            : null
+        }
       >
         {frontmatter.illustrationLayers && (
           <Illustration

@@ -3,7 +3,7 @@ import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 import PropTypes from "prop-types"
 
-function SEO({ description, lang, meta, title, backgroundColor}) {
+function SEO({ description, lang, meta, title, backgroundColor }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -25,7 +25,11 @@ function SEO({ description, lang, meta, title, backgroundColor}) {
       htmlAttributes={{
         lang,
       }}
-      bodyAttributes={typeof window !== 'undefined' ? { style:'background-color: ' + backgroundColor } : {}}
+      bodyAttributes={
+        typeof window !== "undefined"
+          ? { style: "background-color: " + backgroundColor }
+          : {}
+      }
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
@@ -63,7 +67,7 @@ function SEO({ description, lang, meta, title, backgroundColor}) {
         },
         {
           name: `apple-mobile-web-app-status-bar-style`,
-          content: `black-translucent`
+          content: `black-translucent`,
         },
       ].concat(meta)}
     />

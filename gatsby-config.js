@@ -10,7 +10,7 @@ module.exports = {
       },
     ],
   },
-  pathPrefix: "/pokedex",
+  pathPrefix: `/pokedex`,
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
@@ -64,12 +64,13 @@ module.exports = {
         ],
       },
     },
+    `gatsby-plugin-mdx`,
     `gatsby-plugin-eslint`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-offline`,
-    `gatsby-plugin-styled-components`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-gatsby-cloud`,
   ],
 }

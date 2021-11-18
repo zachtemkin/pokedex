@@ -9,7 +9,7 @@ const Index = ({ data }) => {
   return (
     <MainPage className="pokemon-list" pageTitle="National Pokedex">
       <div className="pokemon-list__wrapper">
-        <h1 className="pokemon-list__title">National Pokedex</h1>
+        <h1 className="pokemon-list__title">Kanto Pokedex</h1>
         <ol className="pokemon-list__list">
           {entries.map(({ node }, index) => {
             const pokemonNode =
@@ -28,9 +28,16 @@ const Index = ({ data }) => {
             )
             const jpName = jpNameEntry[0].name
 
+            const isCaptured = node.frontmatter.illustrationLayers
+
             return (
-              <li className="pokemon" key={node.id}>
-                <Link to={node.fields.slug}>
+              <li
+                className={
+                  "pokemon " + (isCaptured ? "pokemon--is-captured" : "")
+                }
+                key={node.id}
+              >
+                <Link className="pokemon__link" to={node.fields.slug}>
                   {`${node.frontmatter.number}: ${enName} / ${jpName}`}
                 </Link>
               </li>
@@ -59,6 +66,9 @@ export const query = graphql`
             colors {
               backgroundColor
               textColor
+            }
+            illustrationLayers {
+              id
             }
             number
             id
