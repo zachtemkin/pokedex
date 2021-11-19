@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: `Pokedex`,
-    author: `Zach`,
-    description: `Pokedex`,
+    author: `Zach Temkin`,
+    description: `Kanto Pokedex`,
     menuLinks: [
       {
         name: `Home`,

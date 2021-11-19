@@ -69,6 +69,16 @@ function SEO({ description, lang, meta, title, backgroundColor }) {
           name: `apple-mobile-web-app-status-bar-style`,
           content: `black-translucent`,
         },
+        {
+          name: `theme-color`,
+          media: `(prefers-color-scheme: light)`,
+          content: `#ff0200`,
+        },
+        {
+          name: `theme-color`,
+          media: `(prefers-color-scheme: dark)`,
+          content: `#ff0000`,
+        },
       ].concat(meta)}
     />
   )
