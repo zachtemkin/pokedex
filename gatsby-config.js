@@ -1,14 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: `Pokedex`,
+    dscription: `illustrations of my favorite pokemon`,
     author: `Zach Temkin`,
-    description: `Kanto Pokedex`,
-    menuLinks: [
-      {
-        name: `Home`,
-        link: `/`,
-      },
-    ],
   },
   pathPrefix: `/pokedex`,
   plugins: [
@@ -46,12 +40,9 @@ module.exports = {
         name: `Pokedex`,
         short_name: `Pokedex`,
         start_url: `/`,
-        background_color: `#6b37bf`,
-        theme_color: `#6b37bf`,
-        // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
-        // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
+        background_color: `#D45163`,
         display: `standalone`,
-        icon: `src/assets/images/icon.svg`, // This path is relative to the root of the site.
+        icon: `src/assets/images/icon.svg`,
       },
     },
     {
@@ -65,12 +56,10 @@ module.exports = {
       },
     },
     `gatsby-plugin-mdx`,
-    `gatsby-plugin-eslint`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-offline`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-gatsby-cloud`,
   ],
-}
+};

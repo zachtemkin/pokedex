@@ -1,67 +1,67 @@
-import React, { useState } from "react"
-import { Link, graphql } from "gatsby"
-import MainPage from "../templates/mainPage"
-import Illustration from "../components/illustration"
-import PokemonDetails from "../components/pokemonDetails"
-import ToggleDetailsButton from "../components/toggleDetailsButton"
-import Arrow from "../components/arrows"
-import PropTypes from "prop-types"
+import React, { useState } from "react";
+import { Link, graphql } from "gatsby";
+import MainPage from "../templates/mainPage";
+import Illustration from "../components/illustration";
+import PokemonDetails from "../components/pokemonDetails";
+import ToggleDetailsButton from "../components/toggleDetailsButton";
+import Arrow from "../components/arrows";
+import PropTypes from "prop-types";
 
 const PokemonDetail = ({ data, pageContext }) => {
-  const { next, prev } = pageContext
-  const nextPost = next ? next.fields.slug : null
-  const prevPost = prev ? prev.fields.slug : null
+  const { next, prev } = pageContext;
+  const nextPost = next ? next.fields.slug : null;
+  const prevPost = prev ? prev.fields.slug : null;
 
-  const frontmatter = data.markdownRemark.frontmatter
+  const frontmatter = data.markdownRemark.frontmatter;
 
   // Pokemon Data /////////////////////////////////////////////////////////////
 
   const pokemonDesctiptions =
     data.pokedexEntry.childPokemonData.childPokemonMetaData.pokemonMetaData
-      .flavor_text_entries
+      .flavor_text_entries;
 
   const englishDescription = pokemonDesctiptions.filter(
-    entry => entry.language.name === "en" && entry.version.name === "red"
-  )
+    (entry) => entry.language.name === "en" && entry.version.name === "red"
+  );
 
-  const flavorText = englishDescription[0].flavor_text
-  const height = data.pokedexEntry.childPokemonData.pokemonData.height
-  const weight = data.pokedexEntry.childPokemonData.pokemonData.weight
-  const types = data.pokedexEntry.childPokemonData.pokemonData.types
-  const abilities = data.pokedexEntry.childPokemonData.pokemonData.abilities
+  const flavorText = englishDescription[0].flavor_text;
+  const height = data.pokedexEntry.childPokemonData.pokemonData.height;
+  const weight = data.pokedexEntry.childPokemonData.pokemonData.weight;
+  const types = data.pokedexEntry.childPokemonData.pokemonData.types;
+  const abilities = data.pokedexEntry.childPokemonData.pokemonData.abilities;
   const evolvesFrom =
     data.pokedexEntry.childPokemonData.childPokemonMetaData.pokemonMetaData
-      .evolves_from_species
+      .evolves_from_species;
   const habitat =
     data.pokedexEntry.childPokemonData.childPokemonMetaData.pokemonMetaData
-      .habitat.name
+      .habitat.name;
 
   const names =
     data.pokedexEntry.childPokemonData.childPokemonMetaData.pokemonMetaData
-      .names
+      .names;
 
-  const enNameEntry = names.filter(entry => entry.language.name === "en")
-  const enName = enNameEntry[0].name
+  const enNameEntry = names.filter((entry) => entry.language.name === "en");
+  const enName = enNameEntry[0].name;
 
-  const jpNameEntry = names.filter(entry => entry.language.name === "ja")
-  const jpName = jpNameEntry[0].name
+  const jpNameEntry = names.filter((entry) => entry.language.name === "ja");
+  const jpName = jpNameEntry[0].name;
 
   ////////////////////////////////////////////////////////////////////////////////
 
-  const [detailIsVisible, setDetailIsVisible] = useState(false)
-  const [illustrationOffset, setIllustrationOffset] = useState({ x: 0, y: 0 })
+  const [detailIsVisible, setDetailIsVisible] = useState(false);
+  const [illustrationOffset, setIllustrationOffset] = useState({ x: 0, y: 0 });
 
   const toggleClick = () =>
-    detailIsVisible ? setDetailIsVisible(false) : setDetailIsVisible(true)
+    detailIsVisible ? setDetailIsVisible(false) : setDetailIsVisible(true);
 
-  const w = typeof window !== "undefined" ? window.innerWidth : 1
-  const h = typeof window !== "undefined" ? window.innerHeight : 1
+  const w = typeof window !== "undefined" ? window.innerWidth : 1;
+  const h = typeof window !== "undefined" ? window.innerHeight : 1;
 
-  const transformIllustration = e => {
-    const illustrationOffsetX = 0.5 - e.clientX / (0.5 * w)
-    const illustrationOffsetY = 0.5 - e.clientY / (0.5 * h)
-    setIllustrationOffset({ x: illustrationOffsetX, y: illustrationOffsetY })
-  }
+  const transformIllustration = (e) => {
+    const illustrationOffsetX = 0.5 - e.clientX / (0.5 * w);
+    const illustrationOffsetY = 0.5 - e.clientY / (0.5 * h);
+    setIllustrationOffset({ x: illustrationOffsetX, y: illustrationOffsetY });
+  };
 
   const PrevNextControls = () => (
     <div
@@ -69,66 +69,61 @@ const PokemonDetail = ({ data, pageContext }) => {
         "pokedex-entry__prev-next-links " +
         (detailIsVisible ? "pokedex-entry__prev-next-links--hidden" : "")
       }
-      style={{ color: frontmatter.colors.textColor }}
-    >
+      style={{ color: frontmatter.colors.textColor }}>
       {prevPost ? (
         <Link
           to={prevPost}
-          className="pokedex-entry__arrow-button pokedex-entry__arrow-button--prev"
-        >
-          <Arrow direction="left" color={frontmatter.colors.textColor} />
+          className='pokedex-entry__arrow-button pokedex-entry__arrow-button--prev'>
+          <Arrow direction='left' color={frontmatter.colors.textColor} />
         </Link>
       ) : (
-        <p className="pokedex-entry__arrow-button pokedex-entry__arrow-button--prev pokedex-entry__arrow-button--disabled"></p>
+        <p className='pokedex-entry__arrow-button pokedex-entry__arrow-button--prev pokedex-entry__arrow-button--disabled'></p>
       )}
 
       {nextPost ? (
         <Link
           to={nextPost}
-          className="pokedex-entry__arrow-button pokedex-entry__arrow-button--next"
-        >
-          <Arrow direction="right" color={frontmatter.colors.textColor} />
+          className='pokedex-entry__arrow-button pokedex-entry__arrow-button--next'>
+          <Arrow direction='right' color={frontmatter.colors.textColor} />
         </Link>
       ) : (
-        <p className="pokedex-entry__arrow-button pokedex-entry__arrow-button--next pokedex-entry__arrow-button--disabled"></p>
+        <p className='pokedex-entry__arrow-button pokedex-entry__arrow-button--next pokedex-entry__arrow-button--disabled'></p>
       )}
     </div>
-  )
+  );
 
   const Frame = ({ position }) => (
     <div
-      className={`pokedex-entry__frame pokedex-entry__frame--${position} ${detailIsVisible &&
-        " pokedex-entry__frame--inactive"}`}
-      style={{ color: frontmatter.colors.textColor }}
-    >
-      <Link to="/" className="frame-text">
+      className={`pokedex-entry__frame pokedex-entry__frame--${position} ${
+        detailIsVisible && " pokedex-entry__frame--inactive"
+      }`}
+      style={{ color: frontmatter.colors.textColor }}>
+      <Link to='/' className='frame-text'>
         Kanto Pokedex
       </Link>
-      <Link to="/" className="frame-text">
+      <Link to='/' className='frame-text'>
         Kanto Pokedex
       </Link>
     </div>
-  )
+  );
 
   Frame.propTypes = {
     position: PropTypes.string,
-  }
+  };
 
   return (
     <MainPage
-      className="pokedex-entry"
+      className='pokedex-entry'
       backgroundColor={frontmatter.colors.backgroundColor}
-      pageTitle="test"
-    >
+      pageTitle='test'>
       <div
-        className="pokedex-entry__container"
+        className='pokedex-entry__container'
         style={{ color: frontmatter.colors.textColor }}
         onMouseMove={
           typeof window !== "undefined" && window.innerWidth >= 720
-            ? e => transformIllustration(e)
+            ? (e) => transformIllustration(e)
             : null
-        }
-      >
+        }>
         {frontmatter.illustrationLayers && (
           <Illustration
             illustration={frontmatter.illustrationLayers}
@@ -157,44 +152,42 @@ const PokemonDetail = ({ data, pageContext }) => {
           className={
             "pokedex-entry__meta-data " +
             (detailIsVisible ? "pokedex-entry__meta-data--hidden" : "")
-          }
-        >
-          <h1 className="pokedex-entry__meta-data__number">
+          }>
+          <h1 className='pokedex-entry__meta-data__number'>
             {"No. " + frontmatter.number}
           </h1>
           <h1
-            className="pokedex-entry__meta-data__name-en"
+            className='pokedex-entry__meta-data__name-en'
             style={{
               color: frontmatter.colors.textColor,
               WebkitTextFillColor: "transparent",
               WebkitTextStrokeColor: frontmatter.colors.textColor,
-            }}
-          >
+            }}>
             {enName}
           </h1>
-          <h1 className="pokedex-entry__meta-data__name-jp">{jpName}</h1>
+          <h1 className='pokedex-entry__meta-data__name-jp'>{jpName}</h1>
           <ToggleDetailsButton
             detailIsVisible={detailIsVisible}
             onClick={toggleClick}
           />
         </div>
       </div>
-      <div className="pokedex-entry__controls">
+      <div className='pokedex-entry__controls'>
         <PrevNextControls />
-        <Frame position="top" />
-        <Frame position="bottom" />
+        <Frame position='top' />
+        <Frame position='bottom' />
       </div>
     </MainPage>
-  )
-}
+  );
+};
 
 PokemonDetail.propTypes = {
   data: PropTypes.object,
   pageContext: PropTypes.object,
-}
+};
 
 export const query = graphql`
-  query($slug: String!, $pokemonId: Int!) {
+  query ($slug: String!, $pokemonId: Int!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       fields {
         slug
@@ -211,9 +204,11 @@ export const query = graphql`
         illustrationLayers {
           publicURL
           childImageSharp {
-            fluid(maxWidth: 800, quality: 100) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
+            gatsbyImageData(
+              width: 800
+              placeholder: NONE
+              formats: [AUTO, WEBP, PNG]
+            )
           }
         }
       }
@@ -264,5 +259,5 @@ export const query = graphql`
       }
     }
   }
-`
-export default PokemonDetail
+`;
+export default PokemonDetail;
