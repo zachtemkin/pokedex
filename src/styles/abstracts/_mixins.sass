@@ -1,4 +1,6 @@
-breakpoints
+@use "sass:math"
+
+//breakpoints
 @mixin fit-to($point)
     @if $point == desktop
         @media screen and (min-width: 1024px )
@@ -33,7 +35,7 @@ breakpoints
 
 
 @mixin col($col, $gutter: $col-gutter)
-    width: calc( #{percentage($col/12)} - #{2 * $gutter} )
+    width: calc( #{percentage(math.div($col, 12))} - #{2 * $gutter} )
     margin-left: $gutter
     
     &:not(:last-child)
@@ -42,28 +44,20 @@ breakpoints
 
 @mixin col-offset($col-offset, $gutter: $col-gutter)
     @if $col-offset >= 0
-        margin-left: calc(#{percentage($col-offset/12)} + #{$gutter}) !important
+        margin-left: calc(#{percentage(math.div($col-offset, 12))} + #{$gutter}) !important
 
 @font-face
     font-family: 'Sporting-Grotesque-Regular'
-    src:    url('../../static/fonts/sporting-grotesque/Regular/Sporting_Grotesque-Regular_web.eot')
-    src:    url('../../static/fonts/sporting-grotesque/Regular/Sporting_Grotesque-Regular_web.eot?#iefix') format('embedded-opentype'),
-    url('../../static/fonts/sporting-grotesque/Regular/Sporting_Grotesque-Regular_web.woff') format('woff'),
-    url('../../static/fonts/sporting-grotesque/Regular/Sporting_Grotesque-Regular_web.woff2') format('woff2'),
-    url('../../static/fonts/sporting-grotesque/Regular/Sporting_Grotesque-Regular_web.ttf') format('truetype'),
-    url('../../static/fonts/sporting-grotesque/Regular/Sporting_Grotesque-Regular_web.svg#svgFontName') format('svg')
+    src: url('../../static/fonts/sporting-grotesque/Regular/Sporting_Grotesque-Regular_web.eot')
+    src: url('../../static/fonts/sporting-grotesque/Regular/Sporting_Grotesque-Regular_web.eot?#iefix') format('embedded-opentype'), url('../../static/fonts/sporting-grotesque/Regular/Sporting_Grotesque-Regular_web.woff') format('woff'), url('../../static/fonts/sporting-grotesque/Regular/Sporting_Grotesque-Regular_web.woff2') format('woff2'), url('../../static/fonts/sporting-grotesque/Regular/Sporting_Grotesque-Regular_web.ttf') format('truetype'), url('../../static/fonts/sporting-grotesque/Regular/Sporting_Grotesque-Regular_web.svg#svgFontName') format('svg')
     font-weight: normal
     font-style: normal
 
 
 @font-face
     font-family: 'Sporting-Grotesque-Bold'
-    src:    url('../../static/fonts/sporting-grotesque/Bold/Sporting_Grotesque-Bold_web.eot')
-    src:    url('../../static/fonts/sporting-grotesque/Bold/Sporting_Grotesque-Bold_web.eot?#iefix') format('embedded-opentype'),
-    url('../../static/fonts/sporting-grotesque/Bold/Sporting_Grotesque-Bold_web.woff') format('woff'),
-    url('../../static/fonts/sporting-grotesque/Bold/Sporting_Grotesque-Bold_web.woff2') format('woff2'),
-    url('../../static/fonts/sporting-grotesque/Bold/Sporting_Grotesque-Bold_web.ttf') format('truetype'),
-    url('../../static/fonts/sporting-grotesque/Bold/Sporting_Grotesque-Bold_web.svg#svgFontName') format('svg')
+    src: url('../../static/fonts/sporting-grotesque/Bold/Sporting_Grotesque-Bold_web.eot')
+    src: url('../../static/fonts/sporting-grotesque/Bold/Sporting_Grotesque-Bold_web.eot?#iefix') format('embedded-opentype'), url('../../static/fonts/sporting-grotesque/Bold/Sporting_Grotesque-Bold_web.woff') format('woff'), url('../../static/fonts/sporting-grotesque/Bold/Sporting_Grotesque-Bold_web.woff2') format('woff2'), url('../../static/fonts/sporting-grotesque/Bold/Sporting_Grotesque-Bold_web.ttf') format('truetype'), url('../../static/fonts/sporting-grotesque/Bold/Sporting_Grotesque-Bold_web.svg#svgFontName') format('svg')
     font-weight: normal
     font-style: normal
 
