@@ -204,11 +204,7 @@ export const query = graphql`
         illustrationLayers {
           publicURL
           childImageSharp {
-            gatsbyImageData(
-              width: 800
-              placeholder: BLURRED
-              formats: [AUTO, WEBP, PNG]
-            )
+            gatsbyImageData(formats: [AUTO, WEBP])
           }
         }
       }
