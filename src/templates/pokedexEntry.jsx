@@ -36,6 +36,9 @@ const PokemonDetail = ({ data, pageContext }) => {
     data.pokedexEntry.childPokemonData.childPokemonMetaData.pokemonMetaData
       .habitat.name;
 
+  const pokemonId =
+    data.pokedexEntry.childPokemonData.childPokemonMetaData.pokemonMetaData.id;
+
   const names =
     data.pokedexEntry.childPokemonData.childPokemonMetaData.pokemonMetaData
       .names;
@@ -98,10 +101,10 @@ const PokemonDetail = ({ data, pageContext }) => {
         detailIsVisible && " pokedex-entry__frame--inactive"
       }`}
       style={{ color: frontmatter.colors.textColor }}>
-      <Link to='/' className='frame-text'>
+      <Link to={`/#${pokemonId}`} className='frame-text'>
         Kanto Pokedex
       </Link>
-      <Link to='/' className='frame-text'>
+      <Link to={`/#${pokemonId}`} className='frame-text'>
         Kanto Pokedex
       </Link>
     </div>
@@ -250,6 +253,7 @@ export const query = graphql`
               }
               name
             }
+            id
           }
         }
       }

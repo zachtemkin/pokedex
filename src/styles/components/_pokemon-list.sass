@@ -25,7 +25,8 @@
 	.pokemon
 		padding: 0.5rem
 		position: relative
-		
+		opacity: 0.5
+
 		&__link
 			color: #000
 			margin-bottom: 0
@@ -34,7 +35,9 @@
 			&:hover
 				text-decoration: underline
 
-		
+		&--is-captured
+			opacity: 1
+
 		&--is-captured:after
 			background-color: red
 			border-radius: .5rem
