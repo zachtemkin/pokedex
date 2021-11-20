@@ -4,7 +4,6 @@ module.exports = {
     dscription: `illustrations of my favorite pokemon`,
     author: `Zach Temkin`,
   },
-  pathPrefix: `/pokedex`,
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
