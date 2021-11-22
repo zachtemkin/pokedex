@@ -102,10 +102,10 @@ const PokemonDetail = ({ data, pageContext }) => {
       }`}
       style={{ color: frontmatter.colors.textColor }}>
       <Link to={`/#${pokemonId}`} className='frame-text'>
-        Kanto Pokedex
+        Pokedex
       </Link>
       <Link to={`/#${pokemonId}`} className='frame-text'>
-        Kanto Pokedex
+        Pokedex
       </Link>
     </div>
   );

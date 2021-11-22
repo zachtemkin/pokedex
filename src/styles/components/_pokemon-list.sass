@@ -1,54 +1,138 @@
 .pokemon-list
 	margin-top: 4rem
-
+	padding: 0 1rem
+	position: relative
 	
 	&__wrapper
 		@include row
-
-	
-	&__title
-		@include col(12)
-		margin-bottom: 1rem
-
-		@include fit-to(tablet)
-			@include col(4)
-			@include col-offset(1)
-
 	
 	&__list
 		@include col(12)
 
 		@include fit-to(tablet)
-			@include col(7)
-
+			@include col(6)
+			@include col-offset(3)
 	
 	.pokemon
-		padding: 0.5rem
-		position: relative
-		opacity: 0.5
-
-		&__link
-			color: #000
-			margin-bottom: 0
-			text-decoration: none
-
-			&:hover
-				text-decoration: underline
+		@include headerFontFamily
+		padding: 1rem 2rem
+		opacity: 0.3
+		font-size: 1rem
+		display: flex
+		justify-content: center
 
 		&--is-captured
 			opacity: 1
 
-		&--is-captured:after
-			background-color: red
-			border-radius: .5rem
-			content: ''
-			height: .5rem
-			left: 0
-			position: absolute
-			top: 50%
-			transform: translateY(-50%) translateX(-1rem)
-			width: .5rem
+		&__number
+			@include bodyFontFamily
+			margin-bottom: 0
 
+		&__en-name
+			margin-bottom: 0
+
+		&__jp-name 
+			@include bodyFontFamily
+			margin-bottom: 0
+
+		&__link
+			display: flex
+			position: relative
+			width: 100%
+			height: 3rem
+			margin: 0
+			padding: 2rem
+			border-radius: 8px
+			justify-content: center
+			align-items: center
+			color: inherit
+			font-family: inherit
+			text-decoration: none
+			overflow: hidden
+
+			&__item
+				margin: 0
 			
-			
+			&:hover	
+				.pokemon__number
+					animation-name: number-on-hover
+					animation-duration: 0.15s
+					animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1)
+					animation-fill-mode: forwards
+				
+				.pokemon__en-name
+					animation-name: en-name-on-hover
+					animation-duration: 0.3s
+					animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1)
+					animation-fill-mode: forwards
+
+				.pokemon__jp-name
+					animation-name: jp-name-on-hover
+					animation-duration: 0.3s
+					animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1)
+					animation-fill-mode: forwards
+
+@keyframes number-on-hover
+	0%	
+		position: static
+		font-size: 1rem
+		opacity: 1
+		transform: translate(0, 0)
 	
+	100%
+		position: static
+		font-size: 1rem
+		opacity: 0
+		transform: translate(0, 50%)
+		
+
+@keyframes en-name-on-hover
+	0%	
+		position: static
+		font-size: 1rem
+		opacity: 1
+		transform: translate(0, 0)
+	
+	50%
+		position: static
+		font-size: 1rem
+		opacity: 0
+		transform: translate(0, 50%)
+		
+	51%
+		position: absolute
+		font-size: 2rem
+		opacity: 0
+		transform: translate(20%, 0)
+
+	100%
+		position: absolute
+		font-size: 2rem
+		opacity: 1
+		transform: translate(0, 0)
+
+
+@keyframes jp-name-on-hover
+	0%	
+		position: static
+		font-size: 1rem
+		opacity: 1
+		transform: translate(0, 0)
+	
+	50%
+		position: static
+		font-size: 1rem
+		opacity: 0
+		transform: translate(0, 50%)
+		
+	51%
+		position: absolute
+		font-size: 4rem
+		opacity: 0
+		transform: translate(10%, 0)
+
+	100%
+		position: absolute
+		font-size: 4rem
+		opacity: 0.5
+		transform: translate(0, 0)			
