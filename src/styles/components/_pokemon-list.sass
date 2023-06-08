@@ -10,13 +10,13 @@
 		@include col(12)
 
 		@include fit-to(tablet)
-			@include col(6)
-			@include col-offset(3)
+			@include col(8)
+			@include col-offset(2)
 	
 	.pokemon
 		@include headerFontFamily
 		padding: 1rem 2rem
-		opacity: 0.3
+		// opacity: 0.3
 		font-size: 1rem
 		display: flex
 		justify-content: center
@@ -27,6 +27,8 @@
 		&__number
 			@include bodyFontFamily
 			margin-bottom: 0
+			font-weight: bold
+			font-size: 28px	
 
 		&__en-name
 			margin-bottom: 0

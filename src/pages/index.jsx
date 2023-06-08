@@ -7,6 +7,12 @@ const Index = ({ data }) => {
   const entries = data.allMarkdownRemark.edges;
   const allPokemon = data.allPokedexEntry.nodes;
 
+  const pad = (num, size) => {
+    num = num.toString();
+    while (num.length < size) num = "0" + num;
+    return num;
+  };
+
   return (
     <MainPage className='pokemon-list' pageTitle='National Pokedex'>
       <div className='pokemon-list__wrapper'>
@@ -19,8 +25,13 @@ const Index = ({ data }) => {
               entry.childPokemonData.childPokemonMetaData.pokemonMetaData
                 .pokedex_numbers;
 
-            const kantoPokedexNumber = pokedexNumbers.filter(
+            const kantoPokedexNumberObj = pokedexNumbers.filter(
               (item) => item.pokedex.name === "kanto"
+            );
+
+            const kantoPokedexNumber = pad(
+              kantoPokedexNumberObj[0].entry_number,
+              3
             );
 
             const pokemonNames =
@@ -55,7 +66,7 @@ const Index = ({ data }) => {
                   className='pokemon__link'
                   to={entryPageNode.fields.slug}>
                   <p className='pokemon__link__item pokemon__number'>
-                    {`${kantoPokedexNumber[0].entry_number}`}&nbsp;
+                    {`${kantoPokedexNumber} /`}&nbsp;
                   </p>
                   <p className='pokemon__link__item pokemon__en-name'>
                     {`${enNameEntry[0].name}`}&nbsp;
@@ -66,9 +77,9 @@ const Index = ({ data }) => {
             ) : (
               <li key={pokemonId} className='pokemon'>
                 <span className='pokemon__number'>
-                  {`${kantoPokedexNumber[0].entry_number}`}&nbsp;
+                  {`${kantoPokedexNumber}`}&nbsp;
                 </span>
-                {`/ ${enNameEntry[0].name} /`}&nbsp;
+                {`/ ${enNameEntry[0].name}`}&nbsp;
                 <span className='pokemon__jp-name'>{`${jaNameEntry[0].name}`}</span>
               </li>
             );
@@ -85,7 +96,7 @@ Index.propTypes = {
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: { fields: frontmatter___number, order: ASC }) {
+    allMarkdownRemark(sort: { frontmatter: { number: ASC } }) {
       edges {
         node {
           id
