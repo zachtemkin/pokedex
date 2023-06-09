@@ -1,15 +1,13 @@
-const path = require(`path`)
-const {
-  createFilePath,
-} = require(`gatsby-source-filesystem`)
-const fetch = require(`node-fetch`)
+const path = require(`path`);
+const { createFilePath } = require(`gatsby-source-filesystem`);
+const fetch = require(`node-fetch`);
 
 exports.sourceNodes = async ({
   actions: { createNode },
   createContentDigest,
 }) => {
-  const result = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=151`)
-  const resultData = await result.json()
+  const result = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=151`);
+  const resultData = await result.json();
 
   resultData.results.forEach(async (pokemon, index) => {
     createNode({
@@ -21,9 +19,9 @@ exports.sourceNodes = async ({
         type: `PokedexEntry`,
         contentDigest: createContentDigest(pokemon),
       },
-    })
-  })
-}
+    });
+  });
+};
 
 exports.onCreateNode = async ({
   node,
@@ -31,31 +29,31 @@ exports.onCreateNode = async ({
   actions,
   createContentDigest,
 }) => {
-  const { createNodeField, createNode } = actions
+  const { createNodeField, createNode } = actions;
 
   if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode, basePath: `src/` })
-    const pokemonId = node.frontmatter.id
+    const slug = createFilePath({ node, getNode, basePath: `src/` });
+    const pokemonId = node.frontmatter.id;
 
     createNodeField({
       node,
       name: `slug`,
       value: slug,
-    })
+    });
 
     createNodeField({
       node,
       name: `pokemonId`,
       value: pokemonId,
-    })
+    });
   }
 
   if (node.internal.type === `PokedexEntry`) {
-    const entry = await fetch(node.pokemon.url)
-    const pokemonData = await entry.json()
+    const entry = await fetch(node.pokemon.url);
+    const pokemonData = await entry.json();
 
-    const pokemonMeta = await fetch(pokemonData.species.url)
-    const pokemonMetaData = await pokemonMeta.json()
+    const pokemonMeta = await fetch(pokemonData.species.url);
+    const pokemonMetaData = await pokemonMeta.json();
 
     createNode({
       pokemonData: pokemonData,
@@ -66,7 +64,7 @@ exports.onCreateNode = async ({
         type: `PokemonData`,
         contentDigest: createContentDigest(pokemonData),
       },
-    })
+    });
 
     createNode({
       pokemonMetaData: pokemonMetaData,
@@ -77,15 +75,15 @@ exports.onCreateNode = async ({
         type: `pokemonMetaData`,
         contentDigest: createContentDigest(pokemonMetaData),
       },
-    })
+    });
   }
-}
+};
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
   const result = await graphql(`
     query {
-      allMarkdownRemark(sort: { fields: frontmatter___number, order: ASC }) {
+      allMarkdownRemark(sort: { frontmatter: { number: ASC } }) {
         edges {
           node {
             fields {
@@ -96,9 +94,9 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `)
+  `);
 
-  const results = result.data.allMarkdownRemark.edges
+  const results = result.data.allMarkdownRemark.edges;
   results.forEach(({ node }, index) => {
     createPage({
       path: node.fields.slug,
@@ -109,6 +107,6 @@ exports.createPages = async ({ graphql, actions }) => {
         next: index === results.length - 1 ? null : results[index + 1].node,
         pokemonId: node.fields.pokemonId,
       },
-    })
-  })
-}
+    });
+  });
+};

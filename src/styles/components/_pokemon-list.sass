@@ -1,76 +1,117 @@
 .pokemon-list
-	margin-top: 4rem
+	margin: 4rem 0
 	padding: 0 1rem
 	position: relative
+	display: flex
 	
 	&__wrapper
 		@include row
+		justify-content: center
 	
 	&__list
-		@include col(12)
+		width: 100%
+		font-size: 80%
+		margin: 0
 
 		@include fit-to(tablet)
-			@include col(6)
-			@include col-offset(3)
-	
+			max-width: 960px
+			font-size: 100%
+
 	.pokemon
 		@include headerFontFamily
-		padding: 1rem 2rem
-		opacity: 0.3
-		font-size: 1rem
+		padding: 1em 0 0 0
+		margin: 0
 		display: flex
-		justify-content: center
 
-		&--is-captured
-			opacity: 1
+		@include fit-to(tablet)
+			font-size: 1em
+			padding: 2em 0 0 0
 
 		&__number
-			@include bodyFontFamily
-			margin-bottom: 0
+			@include headerFontFamily
+			margin: 0.25rem 0.25rem 0 0
+			font-size: 1.125em
+			line-height: 100%
+
+			@include fit-to(tablet)
+				font-size: 1.75em
+				margin-right: 1rem
+
+		&__names-container
+			margin: 0.5rem 0 0 0
 
 		&__en-name
 			margin-bottom: 0
+			font-size: 1.25em
+			text-transform: uppercase
+			letter-spacing: 1.5px
+
+			@include fit-to(tablet)
+				font-size: 2.5em
+				letter-spacing: 3px
 
 		&__jp-name 
-			@include bodyFontFamily
-			margin-bottom: 0
+			margin: 0.25rem 0 0 0
+			font-size: 1em
 
-		&__link
+			@include fit-to(tablet)
+				font-size: 2.25em
+
+		&__entry-image
+			width: 84px
+			height: 84px
+			margin: 0 0.25rem 0 0
+
+			@include fit-to(tablet)
+				width: 192px
+				height: 192px
+				margin-right: 1rem
+
+
+		&__entry-container
 			display: flex
+			align-items: center
 			position: relative
 			width: 100%
-			height: 3rem
 			margin: 0
-			padding: 2rem
-			border-radius: 8px
-			justify-content: center
-			align-items: center
-			color: inherit
+			padding: 0 1rem
+			background-color: #eee
+			border-radius: 0.85em
+			color: #aaa
 			font-family: inherit
 			text-decoration: none
 			overflow: hidden
 
+			@include fit-to(tablet)
+				border-radius: 1.5em
+				padding: 0 2.5rem
+
 			&__item
 				margin: 0
 			
-			&:hover	
-				.pokemon__number
-					animation-name: number-on-hover
-					animation-duration: 0.15s
-					animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1)
-					animation-fill-mode: forwards
+			// &:hover	
+			// 	.pokemon__number
+			// 		animation-name: number-on-hover
+			// 		animation-duration: 0.15s
+			// 		animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1)
+			// 		animation-fill-mode: forwards
 				
-				.pokemon__en-name
-					animation-name: en-name-on-hover
-					animation-duration: 0.3s
-					animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1)
-					animation-fill-mode: forwards
+			// 	.pokemon__en-name
+			// 		animation-name: en-name-on-hover
+			// 		animation-duration: 0.3s
+			// 		animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1)
+			// 		animation-fill-mode: forwards
 
-				.pokemon__jp-name
-					animation-name: jp-name-on-hover
-					animation-duration: 0.3s
-					animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1)
-					animation-fill-mode: forwards
+			// 	.pokemon__jp-name
+			// 		animation-name: jp-name-on-hover
+			// 		animation-duration: 0.3s
+			// 		animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1)
+			// 		animation-fill-mode: forwards
+
+		&--is-captured .pokemon__entry-container
+			color: inherit
+			// border: none
+
 
 @keyframes number-on-hover
 	0%	

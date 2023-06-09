@@ -1,11 +1,18 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
+import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
 import MainPage from "../templates/mainPage";
 import PropTypes from "prop-types";
 
 const Index = ({ data }) => {
   const entries = data.allMarkdownRemark.edges;
   const allPokemon = data.allPokedexEntry.nodes;
+
+  const pad = (num, size) => {
+    num = num.toString();
+    while (num.length < size) num = "0" + num;
+    return num;
+  };
 
   return (
     <MainPage className='pokemon-list' pageTitle='National Pokedex'>
@@ -19,8 +26,13 @@ const Index = ({ data }) => {
               entry.childPokemonData.childPokemonMetaData.pokemonMetaData
                 .pokedex_numbers;
 
-            const kantoPokedexNumber = pokedexNumbers.filter(
+            const kantoPokedexNumberObj = pokedexNumbers.filter(
               (item) => item.pokedex.name === "kanto"
+            );
+
+            const kantoPokedexNumber = pad(
+              kantoPokedexNumberObj[0].entry_number,
+              3
             );
 
             const pokemonNames =
@@ -41,6 +53,11 @@ const Index = ({ data }) => {
             const entryPageNode =
               getEntryPage[0] !== undefined ? getEntryPage[0].node : undefined;
 
+            const compositeImage =
+              entryPageNode !== undefined
+                ? entryPageNode.frontmatter.compositeImage[0]
+                : undefined;
+
             return entryPageNode !== undefined ? (
               <li
                 key={pokemonId}
@@ -52,24 +69,52 @@ const Index = ({ data }) => {
                       entryPageNode.frontmatter.colors.backgroundColor,
                     color: entryPageNode.frontmatter.colors.textColor,
                   }}
-                  className='pokemon__link'
+                  className='pokemon__entry-container'
                   to={entryPageNode.fields.slug}>
                   <p className='pokemon__link__item pokemon__number'>
-                    {`${kantoPokedexNumber[0].entry_number}`}&nbsp;
+                    {`${kantoPokedexNumber}`}
                   </p>
-                  <p className='pokemon__link__item pokemon__en-name'>
-                    {`${enNameEntry[0].name}`}&nbsp;
-                  </p>
-                  <p className='pokemon__link__item pokemon__jp-name'>{`${jaNameEntry[0].name}`}</p>
+
+                  <div className='pokemon__entry-image-container'>
+                    <GatsbyImage
+                      className='pokemon__entry-image'
+                      image={getImage(compositeImage)}
+                      alt='pokemon'
+                    />
+                  </div>
+
+                  <div className='pokemon__names-container'>
+                    <p className='pokemon__link__item pokemon__en-name'>
+                      {`${enNameEntry[0].name}`}
+                    </p>
+                    <p className='pokemon__link__item pokemon__jp-name'>{`${jaNameEntry[0].name}`}</p>
+                  </div>
                 </Link>
               </li>
             ) : (
               <li key={pokemonId} className='pokemon'>
-                <span className='pokemon__number'>
-                  {`${kantoPokedexNumber[0].entry_number}`}&nbsp;
-                </span>
-                {`/ ${enNameEntry[0].name} /`}&nbsp;
-                <span className='pokemon__jp-name'>{`${jaNameEntry[0].name}`}</span>
+                <div className='pokemon__entry-container'>
+                  <span className='pokemon__number'>
+                    {`${kantoPokedexNumber}`}
+                  </span>
+
+                  <div className='pokemon__entry-image-container'>
+                    <StaticImage
+                      className='pokemon__entry-image'
+                      src='../assets/images/incomplete-entry-image.png'
+                      alt='question mark'
+                      placeholder='blurred'
+                      width={300}
+                    />
+                  </div>
+
+                  <div className='pokemon__names-container'>
+                    <p className='pokemon__en-name'>
+                      {`${enNameEntry[0].name}`}
+                    </p>
+                    <p className='pokemon__jp-name'>{`${jaNameEntry[0].name}`}</p>
+                  </div>
+                </div>
               </li>
             );
           })}
@@ -85,7 +130,7 @@ Index.propTypes = {
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: { fields: frontmatter___number, order: ASC }) {
+    allMarkdownRemark(sort: { frontmatter: { number: ASC } }) {
       edges {
         node {
           id
@@ -99,6 +144,15 @@ export const query = graphql`
             }
             illustrationLayers {
               id
+            }
+            compositeImage {
+              childImageSharp {
+                gatsbyImageData(
+                  formats: [AUTO, WEBP]
+                  placeholder: BLURRED
+                  width: 300
+                )
+              }
             }
             number
             id
