@@ -126,7 +126,10 @@
 				
 				.pokemon__names-container
 					scale: 1.2
-					transform: translate(-125px, 0)
+					transform: translate(-56px, 0)
+
+					@include fit-to(tablet)
+						transform: translate(-125px, 0)
 
 		&--is-captured .pokemon__entry-container
 			color: inherit
