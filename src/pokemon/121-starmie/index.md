@@ -11,4 +11,6 @@ illustrationLayers:
   - 2.png
   - 3.png
   - 4.png
+compositeImage:
+  - comp_300.png
 ---

@@ -1,7 +1,9 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
+import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
 import MainPage from "../templates/mainPage";
 import PropTypes from "prop-types";
+import incompleteEntryImage from "../assets/images/incomplete-entry-image.png";
 
 const Index = ({ data }) => {
   const entries = data.allMarkdownRemark.edges;
@@ -52,6 +54,11 @@ const Index = ({ data }) => {
             const entryPageNode =
               getEntryPage[0] !== undefined ? getEntryPage[0].node : undefined;
 
+            const compositeImage =
+              entryPageNode !== undefined
+                ? entryPageNode.frontmatter.compositeImage[0]
+                : undefined;
+
             return entryPageNode !== undefined ? (
               <li
                 key={pokemonId}
@@ -63,24 +70,52 @@ const Index = ({ data }) => {
                       entryPageNode.frontmatter.colors.backgroundColor,
                     color: entryPageNode.frontmatter.colors.textColor,
                   }}
-                  className='pokemon__link'
+                  className='pokemon__entry-container'
                   to={entryPageNode.fields.slug}>
                   <p className='pokemon__link__item pokemon__number'>
-                    {`${kantoPokedexNumber} /`}&nbsp;
+                    {`${kantoPokedexNumber}`}
                   </p>
-                  <p className='pokemon__link__item pokemon__en-name'>
-                    {`${enNameEntry[0].name}`}&nbsp;
-                  </p>
-                  <p className='pokemon__link__item pokemon__jp-name'>{`${jaNameEntry[0].name}`}</p>
+
+                  <div className='pokemon__entry-image-container'>
+                    <GatsbyImage
+                      className='pokemon__entry-image'
+                      image={getImage(compositeImage)}
+                      alt='pokemon'
+                    />
+                  </div>
+
+                  <div className='pokemon__names-container'>
+                    <p className='pokemon__link__item pokemon__en-name'>
+                      {`${enNameEntry[0].name}`}
+                    </p>
+                    <p className='pokemon__link__item pokemon__jp-name'>{`${jaNameEntry[0].name}`}</p>
+                  </div>
                 </Link>
               </li>
             ) : (
               <li key={pokemonId} className='pokemon'>
-                <span className='pokemon__number'>
-                  {`${kantoPokedexNumber}`}&nbsp;
-                </span>
-                {`/ ${enNameEntry[0].name}`}&nbsp;
-                <span className='pokemon__jp-name'>{`${jaNameEntry[0].name}`}</span>
+                <div className='pokemon__entry-container'>
+                  <span className='pokemon__number'>
+                    {`${kantoPokedexNumber}`}
+                  </span>
+
+                  <div className='pokemon__entry-image-container'>
+                    <StaticImage
+                      className='pokemon__entry-image'
+                      src='../assets/images/incomplete-entry-image.png'
+                      alt='question mark'
+                      placeholder='blurred'
+                      width={300}
+                    />
+                  </div>
+
+                  <div className='pokemon__names-container'>
+                    <p className='pokemon__en-name'>
+                      {`${enNameEntry[0].name}`}
+                    </p>
+                    <p className='pokemon__jp-name'>{`${jaNameEntry[0].name}`}</p>
+                  </div>
+                </div>
               </li>
             );
           })}
@@ -110,6 +145,15 @@ export const query = graphql`
             }
             illustrationLayers {
               id
+            }
+            compositeImage {
+              childImageSharp {
+                gatsbyImageData(
+                  formats: [AUTO, WEBP]
+                  placeholder: BLURRED
+                  width: 300
+                )
+              }
             }
             number
             id
