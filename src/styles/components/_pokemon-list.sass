@@ -1,8 +1,25 @@
+
 .pokemon-list
-	margin: 4rem 0
-	padding: 0 1rem
+	padding: 4rem 0.5rem
 	position: relative
 	display: flex
+	flex-flow: column nowrap
+	background-color: #000
+	
+	.title-container
+		@include row
+		justify-content: center
+		margin-bottom: 1em
+
+		.title
+			max-width: 960px
+			color: white
+			font-size: 1.5em
+			letter-spacing: 2px
+
+			@include fit-to(tablet)
+				font-size: 2.5em
+				letter-spacing: 4px
 	
 	&__wrapper
 		@include row
@@ -19,26 +36,34 @@
 
 	.pokemon
 		@include headerFontFamily
-		padding: 1em 0 0 0
+		padding: 0.75em 0 0 0
 		margin: 0
 		display: flex
 
 		@include fit-to(tablet)
 			font-size: 1em
-			padding: 2em 0 0 0
+			padding: 1em 0 0 0
 
 		&__number
 			@include headerFontFamily
 			margin: 0.25rem 0.25rem 0 0
 			font-size: 1.125em
 			line-height: 100%
+			z-index: 1
 
 			@include fit-to(tablet)
 				font-size: 1.75em
 				margin-right: 1rem
+			
+			.num
+				display: block
+				margin-bottom: 0.5em
+				font-size: 70%
 
 		&__names-container
 			margin: 0.5rem 0 0 0
+			z-index: 1
+			transition: scale .2s ease-in-out, transform .2s ease-in-out
 
 		&__en-name
 			margin-bottom: 0
@@ -57,14 +82,19 @@
 			@include fit-to(tablet)
 				font-size: 2.25em
 
+		&__entry-image-container
+			scale: 1.75
+			z-index: 0
+			transition: scale .2s ease-in-out, opacity .2s ease-in-out
+
 		&__entry-image
-			width: 84px
-			height: 84px
-			margin: 0 0.25rem 0 0
+			width: 90px
+			height: 90px
+			margin: 0 0.2rem 0 0
 
 			@include fit-to(tablet)
-				width: 192px
-				height: 192px
+				width: 200px
+				height: 200px
 				margin-right: 1rem
 
 
@@ -75,9 +105,9 @@
 			width: 100%
 			margin: 0
 			padding: 0 1rem
-			background-color: #eee
+			background-color: #5c5c5c
 			border-radius: 0.85em
-			color: #aaa
+			color: #000
 			font-family: inherit
 			text-decoration: none
 			overflow: hidden
@@ -89,24 +119,14 @@
 			&__item
 				margin: 0
 			
-			// &:hover	
-			// 	.pokemon__number
-			// 		animation-name: number-on-hover
-			// 		animation-duration: 0.15s
-			// 		animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1)
-			// 		animation-fill-mode: forwards
+			&:hover	
+				.pokemon__entry-image-container
+					scale: 1
+					opacity: .5
 				
-			// 	.pokemon__en-name
-			// 		animation-name: en-name-on-hover
-			// 		animation-duration: 0.3s
-			// 		animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1)
-			// 		animation-fill-mode: forwards
-
-			// 	.pokemon__jp-name
-			// 		animation-name: jp-name-on-hover
-			// 		animation-duration: 0.3s
-			// 		animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1)
-			// 		animation-fill-mode: forwards
+				.pokemon__names-container
+					scale: 1.2
+					transform: translate(-125px, 0)
 
 		&--is-captured .pokemon__entry-container
 			color: inherit

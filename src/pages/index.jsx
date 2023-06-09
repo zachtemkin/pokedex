@@ -15,7 +15,14 @@ const Index = ({ data }) => {
   };
 
   return (
-    <MainPage className='pokemon-list' pageTitle='National Pokedex'>
+    <MainPage
+      className='pokemon-list'
+      pageTitle='National Pokedex'
+      backgroundColor={"#000"}>
+      <div className='title-container'>
+        <h1 className='title'>POK&Eacute;DEX</h1>
+      </div>
+
       <div className='pokemon-list__wrapper'>
         <ol className='pokemon-list__list'>
           {allPokemon.map((entry) => {
@@ -72,7 +79,8 @@ const Index = ({ data }) => {
                   className='pokemon__entry-container'
                   to={entryPageNode.fields.slug}>
                   <p className='pokemon__link__item pokemon__number'>
-                    {`${kantoPokedexNumber}`}
+                    <span className='num'>No. </span>
+                    {kantoPokedexNumber}
                   </p>
 
                   <div className='pokemon__entry-image-container'>
@@ -95,13 +103,14 @@ const Index = ({ data }) => {
               <li key={pokemonId} className='pokemon'>
                 <div className='pokemon__entry-container'>
                   <span className='pokemon__number'>
-                    {`${kantoPokedexNumber}`}
+                    <span className='num'>No. </span>
+                    {kantoPokedexNumber}
                   </span>
 
                   <div className='pokemon__entry-image-container'>
                     <StaticImage
                       className='pokemon__entry-image'
-                      src='../assets/images/incomplete-entry-image.png'
+                      src='../assets/images/incomplete-entry-image.svg'
                       alt='question mark'
                       placeholder='blurred'
                       width={300}
@@ -150,7 +159,7 @@ export const query = graphql`
                 gatsbyImageData(
                   formats: [AUTO, WEBP]
                   placeholder: BLURRED
-                  width: 300
+                  width: 500
                 )
               }
             }
