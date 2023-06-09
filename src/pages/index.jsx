@@ -3,7 +3,6 @@ import { Link, graphql } from "gatsby";
 import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
 import MainPage from "../templates/mainPage";
 import PropTypes from "prop-types";
-import incompleteEntryImage from "../assets/images/incomplete-entry-image.png";
 
 const Index = ({ data }) => {
   const entries = data.allMarkdownRemark.edges;
