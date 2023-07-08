@@ -4,7 +4,7 @@ id: 4
 types:
   - { color: "#FFA43F" }
   - { color: "#CE441E" }
-colors: { backgroundColor: "#2B626B", textColor: "#FFA43F" }
+colors: { backgroundColor: "#2B626B", textColor: "#EAD88C" }
 illustrationLayers:
   - 0.png
   - 1.png
