@@ -22,34 +22,26 @@
 				font-size: 2.5em
 				letter-spacing: 4px
 	
-	&__wrapper
-		padding: 0 0.5em
-		display: flex
-		justify-content: center
-
-		@include fit-to(tablet)
-			padding: 0 1em
-
 	&__list
 		display: flex
 		flex-flow: row wrap
-		width: 100%
-		margin: 0
+		padding: 0 0.5em
 		justify-content: center
 
 		@include fit-to(tablet)
 			max-width: 1680px
-
+			padding: 0 1em
 
 	.pokemon
 		@include headerFontFamily
 		width: 100%
 		margin: 0
-		padding: 1em 0 0 0
+		padding: 0.5em 0 0 0
 		display: flex
 
 		@include fit-to(tablet)
 			width: calc(50% - 0.5em)
+			padding: 1em 0 0 0
 			font-size: 1em
 			
 			&:not(:nth-child(2n))
@@ -64,6 +56,9 @@
 			
 			&:not(:nth-child(3n))
 				margin-right: 1em
+
+			&:last-child
+				margin: 0
 
 		&__entry-container
 			position: relative
@@ -98,7 +93,7 @@
 					opacity: 0
 
 				.pokemon__entry-image
-					transform: translate(50%, -50%) scale(1.5)
+					transform: translate(50%, -50%) scale(1.2)
 					opacity: 0.6
 
 
@@ -119,7 +114,7 @@
 
 		&__number
 			@include headerFontFamily
-			margin: 0.25rem 0.25rem 0 0
+			margin: 0
 			font-size: 1.125em
 			line-height: 100%
 			text-align: center
@@ -130,10 +125,6 @@
 
 			@include fit-to(tablet)
 				font-size: 1em
-				margin-right: 1rem
-			
-			.num
-				margin-bottom: 0.5em
 
 		&__names-container
 			margin: 0.5rem 0 0 0

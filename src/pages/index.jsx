@@ -23,108 +23,104 @@ const Index = ({ data }) => {
         <h1 className='title'>POK&Eacute;DEX</h1>
       </div>
 
-      <div className='pokemon-list__wrapper'>
-        <ol className='pokemon-list__list'>
-          {allPokemon.map((entry) => {
-            const pokemonId =
-              entry.childPokemonData.childPokemonMetaData.pokemonMetaData.id;
+      <ol className='pokemon-list__list'>
+        {allPokemon.map((entry) => {
+          const pokemonId =
+            entry.childPokemonData.childPokemonMetaData.pokemonMetaData.id;
 
-            const pokedexNumbers =
-              entry.childPokemonData.childPokemonMetaData.pokemonMetaData
-                .pokedex_numbers;
+          const pokedexNumbers =
+            entry.childPokemonData.childPokemonMetaData.pokemonMetaData
+              .pokedex_numbers;
 
-            const kantoPokedexNumberObj = pokedexNumbers.filter(
-              (item) => item.pokedex.name === "kanto"
-            );
+          const kantoPokedexNumberObj = pokedexNumbers.filter(
+            (item) => item.pokedex.name === "kanto"
+          );
 
-            const kantoPokedexNumber = pad(
-              kantoPokedexNumberObj[0].entry_number,
-              3
-            );
+          const kantoPokedexNumber = pad(
+            kantoPokedexNumberObj[0].entry_number,
+            3
+          );
 
-            const pokemonNames =
-              entry.childPokemonData.childPokemonMetaData.pokemonMetaData.names;
+          const pokemonNames =
+            entry.childPokemonData.childPokemonMetaData.pokemonMetaData.names;
 
-            const enNameEntry = pokemonNames.filter(
-              (entry) => entry.language.name === "en"
-            );
+          const enNameEntry = pokemonNames.filter(
+            (entry) => entry.language.name === "en"
+          );
 
-            const jaNameEntry = pokemonNames.filter(
-              (entry) => entry.language.name === "ja"
-            );
+          const jaNameEntry = pokemonNames.filter(
+            (entry) => entry.language.name === "ja"
+          );
 
-            const getEntryPage = entries.filter(
-              ({ node }) => node.frontmatter.id === pokemonId
-            );
+          const getEntryPage = entries.filter(
+            ({ node }) => node.frontmatter.id === pokemonId
+          );
 
-            const entryPageNode =
-              getEntryPage[0] !== undefined ? getEntryPage[0].node : undefined;
+          const entryPageNode =
+            getEntryPage[0] !== undefined ? getEntryPage[0].node : undefined;
 
-            const compositeImage =
-              entryPageNode !== undefined
-                ? entryPageNode.frontmatter.compositeImage[0]
-                : undefined;
+          const compositeImage =
+            entryPageNode !== undefined
+              ? entryPageNode.frontmatter.compositeImage[0]
+              : undefined;
 
-            return entryPageNode !== undefined ? (
-              <li
-                key={pokemonId}
-                id={pokemonId}
-                className='pokemon pokemon--is-captured'>
-                <Link
-                  style={{
-                    backgroundColor:
-                      entryPageNode.frontmatter.colors.backgroundColor,
-                    color: entryPageNode.frontmatter.colors.textColor,
-                  }}
-                  className='pokemon__entry-container'
-                  to={entryPageNode.fields.slug}>
-                  <p className='pokemon__link__item pokemon__number'>
-                    <span className='num'>No. </span>
-                    {kantoPokedexNumber}
+          return entryPageNode !== undefined ? (
+            <li
+              key={pokemonId}
+              id={pokemonId}
+              className='pokemon pokemon--is-captured'>
+              <Link
+                style={{
+                  backgroundColor:
+                    entryPageNode.frontmatter.colors.backgroundColor,
+                  color: entryPageNode.frontmatter.colors.textColor,
+                }}
+                className='pokemon__entry-container'
+                to={entryPageNode.fields.slug}>
+                <p className='pokemon__link__item pokemon__number'>
+                  <span className='num'>No. </span>
+                  {kantoPokedexNumber}
+                </p>
+
+                <GatsbyImage
+                  className='pokemon__entry-image'
+                  image={getImage(compositeImage)}
+                  alt='pokemon'
+                />
+
+                <div className='pokemon__names-container'>
+                  <p className='pokemon__link__item pokemon__en-name'>
+                    {`${enNameEntry[0].name}`}
                   </p>
-
-                  <GatsbyImage
-                    className='pokemon__entry-image'
-                    image={getImage(compositeImage)}
-                    alt='pokemon'
-                  />
-
-                  <div className='pokemon__names-container'>
-                    <p className='pokemon__link__item pokemon__en-name'>
-                      {`${enNameEntry[0].name}`}
-                    </p>
-                    <p className='pokemon__link__item pokemon__jp-name'>{`${jaNameEntry[0].name}`}</p>
-                  </div>
-                </Link>
-              </li>
-            ) : (
-              <li key={pokemonId} className='pokemon'>
-                <div className='pokemon__entry-container'>
-                  <span className='pokemon__number'>
-                    <span className='num'>No. </span>
-                    {kantoPokedexNumber}
-                  </span>
-
-                  <StaticImage
-                    className='pokemon__entry-image'
-                    src='../assets/images/incomplete-entry-image.svg'
-                    alt='question mark'
-                    placeholder='blurred'
-                    width={300}
-                  />
-
-                  <div className='pokemon__names-container'>
-                    <p className='pokemon__en-name'>
-                      {`${enNameEntry[0].name}`}
-                    </p>
-                    <p className='pokemon__jp-name'>{`${jaNameEntry[0].name}`}</p>
-                  </div>
+                  <p className='pokemon__link__item pokemon__jp-name'>{`${jaNameEntry[0].name}`}</p>
                 </div>
-              </li>
-            );
-          })}
-        </ol>
-      </div>
+              </Link>
+            </li>
+          ) : (
+            <li key={pokemonId} className='pokemon'>
+              <div className='pokemon__entry-container'>
+                <span className='pokemon__number'>
+                  <span className='num'>No. </span>
+                  {kantoPokedexNumber}
+                </span>
+
+                <StaticImage
+                  className='pokemon__entry-image'
+                  src='../assets/images/incomplete-entry-image.svg'
+                  alt='question mark'
+                  placeholder='blurred'
+                  width={300}
+                />
+
+                <div className='pokemon__names-container'>
+                  <p className='pokemon__en-name'>{`${enNameEntry[0].name}`}</p>
+                  <p className='pokemon__jp-name'>{`${jaNameEntry[0].name}`}</p>
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
     </MainPage>
   );
 };
