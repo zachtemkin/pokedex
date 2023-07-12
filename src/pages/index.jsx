@@ -83,13 +83,11 @@ const Index = ({ data }) => {
                     {kantoPokedexNumber}
                   </p>
 
-                  <div className='pokemon__entry-image-container'>
-                    <GatsbyImage
-                      className='pokemon__entry-image'
-                      image={getImage(compositeImage)}
-                      alt='pokemon'
-                    />
-                  </div>
+                  <GatsbyImage
+                    className='pokemon__entry-image'
+                    image={getImage(compositeImage)}
+                    alt='pokemon'
+                  />
 
                   <div className='pokemon__names-container'>
                     <p className='pokemon__link__item pokemon__en-name'>
@@ -107,15 +105,13 @@ const Index = ({ data }) => {
                     {kantoPokedexNumber}
                   </span>
 
-                  <div className='pokemon__entry-image-container'>
-                    <StaticImage
-                      className='pokemon__entry-image'
-                      src='../assets/images/incomplete-entry-image.svg'
-                      alt='question mark'
-                      placeholder='blurred'
-                      width={300}
-                    />
-                  </div>
+                  <StaticImage
+                    className='pokemon__entry-image'
+                    src='../assets/images/incomplete-entry-image.svg'
+                    alt='question mark'
+                    placeholder='blurred'
+                    width={300}
+                  />
 
                   <div className='pokemon__names-container'>
                     <p className='pokemon__en-name'>
